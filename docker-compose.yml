@@ -1,0 +1,54 @@
+version: "3.5"
+
+services:
+  nest:
+    container_name: nestjs
+    build: ./NestJS/
+    restart: always
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: 1234
+      DB_DATABASE: user
+    depends_on:
+      - postgres
+    ports:
+      - 80:80
+      - 5555:5555
+    networks:
+      - network
+    volumes:
+      - ./ssl:/etc/ssl_volume
+      - ./NestJS:/root/Nestjs
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_DB: user
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - 5432:5432
+    networks:
+      - network
+
+  react:
+    container_name: react
+    build: ./React
+    restart: always
+    depends_on:
+      - nest
+    ports:
+      - 3000:3000
+    networks:
+      - network
+    volumes:
+      - ./ssl:/etc/ssl_volume
+      - ./React:/root/React
+
+networks:
+  network:
+    driver: bridge

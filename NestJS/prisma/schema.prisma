@@ -1,0 +1,108 @@
+generator client {
+	provider      = "prisma-client-js"
+	binaryTargets = ["native", "windows"]
+}
+
+datasource db {
+	provider = "postgresql"
+	url      = env("DATABASE_URL")
+}
+
+model Friend {
+	id            Int   @id @default(autoincrement())
+	Users         User[]
+}
+
+model FriendRequest {
+	id            Int   @id @default(autoincrement())
+	Users         User[]
+	SenderID	  Int
+}
+
+model Ignore {
+	id            Int   @id @default(autoincrement())
+	OtherUserID   Int
+	User          User  @relation(fields: [UserId], references: [id])
+	UserId        Int
+}
+
+model History {
+	id            Int     @id @default(autoincrement())
+	RivalNick     String
+	Score         Int
+	Latter		  Int
+	RivalScore    Int
+	RivalLatter   Int
+	User          User    @relation(fields: [UserId], references: [id])
+	UserId        Int
+}
+
+model User {
+	id              Int      @id
+	login           String   @unique
+	nick            String   @unique
+	Status			String
+	IsFormSigned	Boolean
+	TFAuth          Boolean
+	TFSecret        String
+	secretAscii     String
+	WinCount        Int
+	LoseCount       Int
+	LatterLevel     Int
+	ImageExt		String
+	FriendRequests  FriendRequest[]
+	Achievements    Achievements?
+	Friends         Friend[]
+	IgnoredUsers    Ignore[]
+	MatchHistory    History[]
+	GameInvitations	GameInvitation[]
+	Channels        Channel[]
+}
+
+model Achievements{
+	id      Int     @id @default(autoincrement())
+	Ac1     Boolean
+	Ac2     Boolean
+	Ac3     Boolean
+	Ac4     Boolean
+	Ac5     Boolean
+	Ac6     Boolean
+	User    User    @relation(fields: [UserID], references: [id])
+	UserID  Int     @unique
+}
+
+model Channel {
+	id              Int @id @default(autoincrement())
+	Name            String @unique
+	ChannelOwnerID  Int
+	AdminIDs        Int[]
+	BannedIDs       Int[]
+	MutedIDs        Int[]
+	InvitedIDs      Int[]
+	Password        String
+	IsDirect        Boolean
+	IsInviteOnly    Boolean
+	messages        Message[]
+	Users           User[]
+}
+
+model Message {
+	id        	Int       @id @default(autoincrement())
+	message   	String
+	senderID  	Int
+	senderNick	String
+
+	Channel   Channel   @relation(fields: [channelName], references: [Name])
+	channelName	String
+
+	CreatedAt DateTime  @default(now())
+}
+
+model GameInvitation {
+	id        	Int       @id @default(autoincrement())
+	inviterID  	Int
+	inviterNick	String
+
+	User    User    @relation(fields: [UserID], references: [id])
+	UserID  Int
+}
