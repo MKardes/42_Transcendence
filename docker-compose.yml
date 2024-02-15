@@ -19,8 +19,8 @@ services:
     networks:
       - network
     volumes:
-      - ./ssl:/etc/ssl_volume
-      - ./NestJS:/root/Nestjs
+      - ssl_data:/etc/ssl_volume
+      - nest_data:/root/Nestjs
 
   postgres:
     container_name: postgres
@@ -46,8 +46,28 @@ services:
     networks:
       - network
     volumes:
-      - ./ssl:/etc/ssl_volume
-      - ./React:/root/React
+      - ssl_data:/etc/ssl_volume
+      - react_data:/root/React
+
+volumes:
+  nest_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./NestJS
+      o: bind
+  react_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./React
+      o: bind
+  ssl_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./ssl
+      o: bind
 
 networks:
   network:

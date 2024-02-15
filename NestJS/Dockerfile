@@ -30,9 +30,10 @@ RUN npm install -g prisma
 RUN prisma generate
 
 RUN gcc run.c -o run
+RUN chmod +x run
 
 # EXPOSE is just for inform the reader that ı use for that docker container port 80
 # it is actually can be seen in "docker inspect [image]" as a port
 EXPOSE	80
 ENTRYPOINT ["./run"]
-# ENTRYPOINT ["sleep", "1000000000"]
+# ENTRYPOINT ["sleep", "10000"]

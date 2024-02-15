@@ -17,7 +17,7 @@ clean:
 fclean: down
 	docker system prune -af
 	docker volume prune -af
-	rm -rf NestJS/Avatars NestJS/node_modules NestJS/dist 
+	rm -rf NestJS/Avatars/* NestJS/node_modules NestJS/dist 
 #   rm -rf NestJS/run
 	rm -rf React/node_modules
 #	sudo rm -rf $(USER_HOME)/data/*
