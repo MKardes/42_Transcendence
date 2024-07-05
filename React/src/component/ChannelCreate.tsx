@@ -9,7 +9,7 @@ const ChannelCreate = ({setPopOpen, channelList, setChannelList}) =>{
 	const send = async () =>{
 		if (inputValue)
 		{
-			const response = await fetch(`https://${process.env.REACT_APP_IP}:80/chat/${inputValue}/create/false/${inv}/${pass}`, {
+			const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/chat/${inputValue}/create/false/${inv}/${pass}`, {
 				headers: {
 					'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 					'Content-Type': 'application/json'

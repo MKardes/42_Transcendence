@@ -29,11 +29,8 @@ RUN npm install @nestjs/platform-socket.io
 RUN npm install -g prisma
 RUN prisma generate
 
-RUN gcc run.c -o run
-RUN chmod +x run
-
-# EXPOSE is just for inform the reader that ı use for that docker container port 80
+# EXPOSE is just for inform the reader that ı use for that docker container port BACK_PORT(Backend port)
 # it is actually can be seen in "docker inspect [image]" as a port
-EXPOSE	80
-ENTRYPOINT ["./run"]
+EXPOSE ${BACK_PORT}
+ENTRYPOINT ["sh", "init.sh"]
 # ENTRYPOINT ["sleep", "10000"]

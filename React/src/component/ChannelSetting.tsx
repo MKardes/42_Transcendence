@@ -23,7 +23,7 @@ const ChannelSetting = ({setPopOpen, channelName}) =>{
 			{
 				case "set":
 					{
-						const response = await fetch(`https://${process.env.REACT_APP_IP}:80/chat/${channelName}/setChannelPassword/${pass}`, {
+						const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/chat/${channelName}/setChannelPassword/${pass}`, {
 							headers: {
 								'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 							}
@@ -32,7 +32,7 @@ const ChannelSetting = ({setPopOpen, channelName}) =>{
 					}
 					case "change":
 					{
-						const response = await fetch(`https://${process.env.REACT_APP_IP}:80/chat/${channelName}/changeChannelPassword/${pass}`, {
+						const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/chat/${channelName}/changeChannelPassword/${pass}`, {
 							headers: {
 								'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 							}
@@ -41,7 +41,7 @@ const ChannelSetting = ({setPopOpen, channelName}) =>{
 					}
 					case "remove":
 					{
-						const response = await fetch(`https://${process.env.REACT_APP_IP}:80/chat/${channelName}/removeChannelPassword`, {
+						const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/chat/${channelName}/removeChannelPassword`, {
 							headers: {
 							'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 							}

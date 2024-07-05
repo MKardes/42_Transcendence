@@ -88,7 +88,7 @@
 
 	.navbar{
 		height: 25%;
-		background-color: #6096B4;
+		background-color: #1a4371be;
 		color: #EEE9DA;
 		display: flex;
 		align-items: center;
@@ -97,6 +97,14 @@
 			margin-top: 20px;
 			font-size: 30px;
 			font-weight: bold;
+			.linkLogo{
+				position: relative;
+				top: -10px;
+				color: inherit;
+				text-decoration: none;
+				color: white;
+
+			}
 		}
 		.list{
 			display: flex;
@@ -482,6 +490,7 @@
 		display: block;
 		padding-top: 100px;
 		.profileH1{
+			color: white;
 			display: flex;
 			justify-content: center;
 			padding-bottom: 80px;
@@ -502,7 +511,7 @@
 					height: 200px;
 					border-radius: 50%;
 					overflow: hidden;
-					border: 5px  solid #6096B4;
+					border: 3px  solid white;
 					margin-top: 2%;
 					margin-bottom: -30%;
 					z-index: 1;
@@ -526,80 +535,17 @@
 				align-items: center;
 				height: 700px;
 				width: 900px;
-				background-color: #3F72AF;
+				background-color: #112D4E;
 				overflow: hidden;
 				padding: 20px;
 				border-radius: 50px;
 				z-index: 0;
-				.pIconBlock{
-					width: 100%;
-					display: flex;
-					padding-right: 20%;
-					padding-bottom: 5%;
-					justify-content: end;
-					.pIconBlockPosition{
-						display: flex;
-						align-items: center;
-						justify-content: space-between;
-						.pIconLabel{
-							margin: 20px;
-							color: #112D4E;
-							font-size: large;
-							font-weight: 700;
-						}
-						.toogleContainer{
-							text-align: center;
-							display: flex;
-							justify-content: center;
-							#toogle{display: none;}
-							.toogle-checkbox{
-								width: 90px;
-								height: 32px;
-								background-color: white;
-								position: relative;
-							}
-							.toogle-p-Div{
-								display: flex;
-								padding-top: 8px;
-								justify-content: center;
-								.toogle-p{
-									font-weight: bold;
-									font-size: small;
-								}
-							}
-							.toogle-label{
-								display: inline-block;
-								width: 64px;
-								height: 32px;
-								background-color: #ccc;
-								border-radius: 20px;
-								position: relative;
-								cursor: pointer;
-							}
-							.toogle-label::before{
-								content: "";
-								position: absolute;
-								top: 1px;
-								left: 1px;
-								width: 30px;
-								height: 30px;
-								background-color: white;
-								border-radius: 50%;
-								transition: transform 0.3s;
-							}
-							#toogle:checked + .toogle-label{
-								background-color: #112D4E;
-							}
-							#toogle:checked + .toogle-label::before{
-								transform:  translateX(24px);
-								left: 8px;
-							}
-						}
-					}
-				}
 				.pValueBlock{
+					align-items: center;
 					display: flex;
+					color: white;
 					.leftBlock{
+						margin-left: 15%;
 						width: 40%;
 						padding-left: 20px;
 						padding-right: 20px;
@@ -625,6 +571,15 @@
 							}
 							.settingIcon{
 								padding-right: 15px;
+								.newNickInput{
+									font-size: large;
+									background-color: white;
+									border: none;
+									outline: none;
+									&::placeholder{
+										color: lightgray;
+									}
+								}
 								.setting{
 									width: 24px;
 									height: 24px;
@@ -640,13 +595,15 @@
 			.match{
 				width: 55%;
 				display: flex;
-				justify-content: flex-end;
+				margin-top: 30px;
+				margin-bottom: -30px;
+				justify-content: center;
 				label{
 					cursor: pointer;
-					color: #112D4E;
+					color: white;
 					font-weight: 700;
 					font-size: large;
-					border: 2px solid #112D4E;
+					border: 2px solid white;
 					border-radius: 8px;
 					padding: 8px;
 					box-shadow: 1px 2px 3px 1px rgba(0,0,0,0.3);
@@ -662,7 +619,7 @@
 					margin: 10px;
 					overflow: hidden;;
 					background-color: #112D4E;
-					border: 10px solid #6096B4;
+					border: 3px solid white;
 					border-radius: 50%;
 				}
 				p{
@@ -801,10 +758,18 @@
 			justify-content: center;
 			display: flex;
 			user-select: none;
+			.leaderHead{
+				position: relative;
+				top: 40px;
+				color: white;
+				font-weight:450;
+			}
 		}
 		.lBblock{
 			justify-content: center;
 			display: flex;
+			position: relative;
+			top: 40px;
 			margin-top: 3%;
 			.itemIcon{
 				margin-left: 2%;
@@ -824,6 +789,7 @@
 				display: flex;
 				align-items: center;
 				.lBH3{
+					color: white;
 					margin: 3px;
 					display: -webkit-inline-box;
 				}
@@ -839,11 +805,13 @@
 					margin-bottom: 1.4em;
 					width: 7em;
 					.lBH3{
+						color: white;
 						margin: 3px;
 						display: -webkit-inline-box;
 					}
 					.lBSpan{
-						margin-left: -5px;
+						color: white;
+						margin-left: +3px;
 						margin-bottom: -35px;
 						display: block;
 					}
@@ -859,13 +827,15 @@
 				}
 
 				.itemSpan{
+					color: white;
 					font-weight: 500;
 					font-size: larger;
 					margin-top: 5px;
 					margin: 30px;
 				}
-
+				
 				.valueSpan{
+					color: white;
 					display: flex;
 					margin-left: 32px;
 					font-weight: 300;
@@ -893,7 +863,7 @@
 			overflow: hidden;
 			.sidebar{
 				width: 20%;
-				background-color: #3F72AF;
+				background-color: #0e3355;
 				.sidebarNav{
 					display: flex;
 					align-items: center;
@@ -901,7 +871,7 @@
 					height: 50px;
 					padding: 10px;
 					justify-content: space-between;
-					color:#93BFCF;
+					color:#ffffff;
 					.messageBoxIcon{
 						display: flex;
 						gap: 10px;
@@ -1109,7 +1079,7 @@
 				.messageBox{
 					.messageBoxInfo{
 						height: 50px;
-						background-color: #9CB4CC;
+						background-color: #0e3355;
 						display: flex;
 						align-items: center;
 						justify-content: space-between;
@@ -1119,7 +1089,7 @@
 						font-size: large;
 					}
 					.messages{
-						background-color:#DBE2EF;
+						background-color: #395c7f;
 						padding: 10px;
 						height:calc(100vh - 300px);
 						overflow-y: scroll;
@@ -1181,6 +1151,7 @@
 					justify-content: space-between;
 					.input{
 						width: 100%;
+						background-color: white;
 						border: none;
 						outline: none;
 						color: #112D4E;
@@ -1228,16 +1199,16 @@
 				.friendsMain{
 					width:100%;
 					height: 100%;
-					background-color:#3F72AF ;
+					background-color:#0e3355 ;
 					.friendSearchForm{
+						width:80%;
 						padding: 10px;
 						display: flex;
 						justify-content: space-around;
 						.searchInput{
-							background-color: transparent;
 							font-size: medium;
+							background-color:transparent;
 							border: none;
-							color: white;
 							outline: none;
 							&::placeholder{
 								color: lightgray;
@@ -1407,8 +1378,8 @@
 						height: 50px;
 						padding: 10px;
 						justify-content: space-between;
-						color:#93BFCF;
 						.sidebarLogo{
+							color: white;
 							font-weight: bolder;
 						}
 					}
@@ -1513,7 +1484,7 @@
 		align-items: center;
 	}
 	.tfa-container{
-		background-color: #9CB4CC;
+		background-color: #112D4E;
 		width: 500px;
 		height: 500px;
 		display:flex;
@@ -1530,7 +1501,8 @@
 		width: 80%;
 	}
 	.x-button{
-		background-color: #9CB4CC;
+		color: white;
+		background-color: #112D4E;
 		border: none;
 		font-size: x-large;
 		cursor: pointer;
@@ -1552,10 +1524,12 @@
 		height: 60px;
 	}
 	.tfa-h1{
+		color: white;
 		margin-top: 10px;
 		padding: 10px;
 	}
 	.tfa-p{
+		color: white;
 		padding-bottom: 20px;
 	}
 	.tfa-img{
@@ -1568,20 +1542,20 @@
 	.tfa-input{
 		width: 130px;
 		height: 30px;
-		background-color: #9CB4CC;
-		border: none;
-		border-bottom: 2px solid #3F72AF;
+		background-color: white;
+		border: 1px solid black;
 		outline: none;
 		font-size: 1.4em;
-		margin: 10px;
+		margin-top: 22px;
+		margin-bottom: 10px;
 		text-align: center;
 	}
 	.tfa-button{
 		width: 60px;
 		height: 30px;
 		margin: 5px;
-		margin-bottom: 15px;
-		background-color: #8ca1b6;
+		margin-bottom: 10px;
+		background-color: white;
 		box-shadow: 2px 5px 20px 1px rgba(0,0,0,0.1);
 		border-radius: 5px;
 	}
@@ -1589,6 +1563,7 @@
 	.toggle-switch {
 		position: relative;
 		display: inline-block;
+		margin-left: -5px;
 		width: 60px;
 		height: 34px;
 	}
@@ -1665,14 +1640,14 @@
 	}
 
 	.matchHistory{
-		background-color: #6097b4f6;
+		background-color: #000c22;
 		padding: 20px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		height: calc(100vh - 56px);
 		.matchHistoryBody{
-			background-color: #1a4371;
+			background-color: #112D4E;
 			box-shadow: 2px 4px 1px 1px rgba(0, 0, 0, 0.2);
 			width: 800px;
 			height: 1000px;
@@ -1683,6 +1658,7 @@
 			overflow-y: scroll;
 
 			.matchHistoryH{
+				color: white;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -1717,6 +1693,7 @@
 					align-items: center;
 					flex-direction:column;
 					.nick{
+						color: white;
 						font-size: larger;
 						font-weight: 500;
 						.matchLetter{
@@ -1740,6 +1717,7 @@
 					justify-content: center;
 					align-items: center;
 					flex-direction: column;
+					color: white;
 					.nick{
 						font-size: larger;
 						font-weight: 500;
@@ -1767,111 +1745,132 @@
 			}
 		}
 
-	.game{
-		display: flex;
-		flex-direction: row;
-		width: 100vh;
-		justify-content: center;
-		.gameLeft{
-			flex: 3;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			flex-direction: column;
-			border-radius: 15px;
-			background-color: #112d4e8f;
-			height: 50vh;
-			margin: 50px;
-			padding: 15px;
-			.PlayButton{
-				height: 70px;
-				width: 270px;
-				padding: 15px 30px;
-				border-radius: 5px;
-				border: 5px;
-				color: white;
-				background-color: rgb(30, 149, 61);
-				border: 2px solid #1a4371;
-				font-weight: bold;
-				font-family:monospace;
-				font-size:xx-large;
-				align-items: center;
-				justify-content: center;
-				display: flex;
-				cursor: pointer;
-				margin: 10px;
-				box-shadow: 1px 2px 3px 1px rgba(0,0,0,0.3);
-			}
-			.PlayModeButton{
-				height: 70px;
-				width: 270px;
-				padding: 15px 30px;
-				border-radius: 5px;
-				border: 5px;
-				color: white;
-				background-color: rgb(193, 207, 34);
-				border: 2px solid #1a4371;
-				font-weight: bold;
-				font-family:monospace;
-				font-size:xx-large;
-				align-items: center;
-				justify-content: center;
-				display: flex;
-				cursor: pointer;
-				margin: 10px;
-				box-shadow: 1px 2px 3px 1px rgba(0,0,0,0.3);
-			}
-
+	.oyun{
+		.waitFriend{
+			margin-top: 20px;
+			position: relative;
+			font-size: 1.1em;
+			text-decoration: none;
+			font-weight: 500;
+			margin-left: 20px;
+			color: white;
 		}
-		.gameRight{
-			background-color: #1a4371be;
-			flex: 3;
+		.waitQueue{
+			margin-top: 20px;
+			position: relative;
+			font-size: 1.1em;
+			text-decoration: none;
+			font-weight: 500;
+			margin-left: 20px;
+			color: white;
+		}
+		.game{
 			display: flex;
+			flex-direction: row;
+			width: 100vh;
 			justify-content: center;
-			align-items: center;
-			flex-direction: column;
-			border-radius: 15px;
-			height: 50vh;
-			margin: 50px;
-			padding: 15px;
-			.gameRequest{
-				align-items: center;
+			.gameLeft{
+				flex: 3;
 				display: flex;
+				justify-content: center;
+				align-items: center;
 				flex-direction: column;
-				overflow-y: scroll;
-				height: 100%;
-				width: 100%;
-				.gameRequestH{
-					margin-top: 50px;
-					font-weight: 600;
-					font-size: x-large;
-				}
-				.gameRequestList{
+				border-radius: 15px;
+				background-color: #112d4e8f;
+				height: 50vh;
+				margin: 50px;
+				padding: 15px;
+				.PlayButton{
+					height: 70px;
+					width: 270px;
+					padding: 15px 30px;
+					border-radius: 5px;
+					border: 5px;
+					color: white;
+					background-color: rgb(30, 149, 61);
+					border: 2px solid #1a4371;
+					font-weight: bold;
+					font-family:monospace;
+					font-size:xx-large;
+					align-items: center;
+					justify-content: center;
 					display: flex;
-					width: 100%;
+					cursor: pointer;
+					margin: 10px;
+					box-shadow: 1px 2px 3px 1px rgba(0,0,0,0.3);
+				}
+				.PlayModeButton{
+					height: 70px;
+					width: 270px;
+					padding: 15px 30px;
+					border-radius: 5px;
+					border: 5px;
+					color: white;
+					background-color: rgb(193, 207, 34);
+					border: 2px solid #1a4371;
+					font-weight: bold;
+					font-family:monospace;
+					font-size:xx-large;
+					align-items: center;
+					justify-content: center;
+					display: flex;
+					cursor: pointer;
+					margin: 10px;
+					box-shadow: 1px 2px 3px 1px rgba(0,0,0,0.3);
+				}
+	
+			}
+			.gameRight{
+				background-color: #112d4e8f;
+				flex: 3;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				flex-direction: column;
+				border-radius: 15px;
+				height: 50vh;
+				margin: 50px;
+				padding: 15px;
+				.gameRequest{
+					align-items: center;
+					display: flex;
 					flex-direction: column;
-					overflow-x: hidden;
-					padding: 5px;
-					.gameRequestLi{
+					overflow-y: scroll;
+					height: 100%;
+					width: 100%;
+					.gameRequestH{
+						color: white;
+						margin-top: 50px;
+						font-weight: 600;
+						font-size: xx-large;
+					}
+					.gameRequestList{
 						display: flex;
 						width: 100%;
-						justify-content:space-between;
-						margin: 5px;
-						li{
-							color: white;
-						}
-						img{
-							width: 24px;
-							height: 24px;
-							margin-left: 20px;
-							cursor: pointer;
+						flex-direction: column;
+						overflow-x: hidden;
+						padding: 5px;
+						.gameRequestLi{
+							display: flex;
+							width: 100%;
+							justify-content:space-between;
+							margin: 5px;
+							li{
+								color: white;
+							}
+							img{
+								width: 24px;
+								height: 24px;
+								margin-left: 20px;
+								cursor: pointer;
+							}
 						}
 					}
 				}
-			}
-			.gameRequest::-webkit-scrollbar{
-				width: 5px;
-				background: transparent;
+				.gameRequest::-webkit-scrollbar{
+					width: 5px;
+					background: transparent;
+				}
 			}
 		}
 	}

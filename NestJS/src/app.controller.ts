@@ -11,7 +11,7 @@ export class AppController {
 		private avatarService: AvatarService){}
 
 	@Get('leaderboard')
-	@UseGuards(JwtGuard)
+    @UseGuards(JwtGuard)
 	async getLeaderboard(@Res() response : Response){
 		const users = await this.prisma.user.findMany({
 			orderBy: {

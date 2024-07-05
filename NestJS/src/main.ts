@@ -5,11 +5,14 @@ import * as fs from 'fs';
 
 async function bootstrap() {
   dotenv.config(); // dotenv ile .env dosyasını yükleyin
-  const httpsOptions = {
-    key: fs.readFileSync('/etc/ssl_volume/domain_key.pem'),
-    cert: fs.readFileSync('/etc/ssl_volume/domain_crt.pem'),
-  };
-  const app = await NestFactory.create(AppModule, {cors: true, httpsOptions });
+  
+  //const httpsOptions = {
+  //  key: fs.readFileSync('/etc/ssl_volume/domain_key.pem'),
+  //  cert: fs.readFileSync('/etc/ssl_volume/domain_crt.pem'),
+  //};
+  //(FOR HTTPS)
+  
+  const app = await NestFactory.create(AppModule, {cors: true, /*httpsOptions (FOR HTTPS)*/ });
   app.enableCors({ origin: '*' });
 
   // const app = await NestFactory.create<NestExpressApplication>(AppModule, {cors : true});
@@ -27,6 +30,6 @@ async function bootstrap() {
 
   // app.enableCors({ origin: 'http://10.12.14.1:3000' }); // React uygulamasının IP ve portunu ekleyin
   // app.enableCors({ origin: 'http://10.12.14.5:3000' }); // React uygulamasının IP ve portunu ekleyin
-  await app.listen(80, '0.0.0.0');
+  await app.listen(process.env.BACK_PORT, '0.0.0.0');
 }
 bootstrap();

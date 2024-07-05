@@ -6,7 +6,7 @@ const TFAVerify = ({setIsTFAStatus, setUser, setIsFormSigned}) =>{
     const click = async (e)=>{
         e.preventDefault();
         const stringValue: string = value.toString();
-        const responseVerify = await fetch(`https://${process.env.REACT_APP_IP}:80/auth/tfa/verify/${stringValue}`, {
+        const responseVerify = await fetch(`http://${process.env.REACT_APP_BACK_URL}/auth/tfa/verify/${stringValue}`, {
             headers: {
                 'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
             }
@@ -16,7 +16,7 @@ const TFAVerify = ({setIsTFAStatus, setUser, setIsFormSigned}) =>{
         const obj = await responseVerify.json();
         if(obj.res === 0)
         {
-            const responseUser = await fetch(`https://${process.env.REACT_APP_IP}:80/user`, {
+            const responseUser = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user`, {
 					headers: {
 						'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 					}

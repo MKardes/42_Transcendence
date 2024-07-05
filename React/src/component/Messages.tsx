@@ -13,7 +13,7 @@ const Messages=({currentChannel, user}) =>{
     });
     useEffect(() => {
         const fetchData = async () =>{
-            const responseMessages = await fetch(`https://${process.env.REACT_APP_IP}:80/chat/${currentChannel}/messages`, {
+            const responseMessages = await fetch(`http://${process.env.REACT_APP_BACK_URL}/chat/${currentChannel}/messages`, {
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }

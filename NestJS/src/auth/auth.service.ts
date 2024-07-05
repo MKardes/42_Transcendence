@@ -82,6 +82,8 @@ export class AuthService {
 			body: form
 		});
 		const dataToken = await responseToken.json();
+		console.log(form);
+		console.log(dataToken);
 		const responseInfo = await fetch('https://api.intra.42.fr/v2/me', {
 			headers: {
 				'Authorization': 'Bearer ' + dataToken.access_token

@@ -16,7 +16,7 @@ const ChannelPopUp = ({channel}) =>{
 
 	useEffect ( () => {
 		const fetchData = async () =>{
-			const responseClients =await fetch(`https://${process.env.REACT_APP_IP}:80/chat/${channel.Name}`, {
+			const responseClients =await fetch(`http://${process.env.REACT_APP_BACK_URL}/chat/${channel.Name}`, {
 				headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }

@@ -33,7 +33,7 @@ const Profile = () => {
 		if (nick !== null)
 		{
 			const fetchData = async () => {
-				const responseUser = await fetch(`https://${process.env.REACT_APP_IP}:80/user/profile/${nick}`, {
+				const responseUser = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/profile/${nick}`, {
 					headers: {
 						'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 					}
@@ -48,7 +48,7 @@ const Profile = () => {
 		}
 		else{
 			const fetchData = async () =>{
-				const responseUser = await fetch(`https://${process.env.REACT_APP_IP}:80/user/profile`, {
+				const responseUser = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/profile`, {
 					headers: {
 						'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 					}
@@ -64,7 +64,7 @@ const Profile = () => {
 	const handleToggleChange = async (isChecked: boolean) => {
 		if (isChecked === true)
 		{
-			const response = await fetch(`https://${process.env.REACT_APP_IP}:80/auth/tfa/enable`, {
+			const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/auth/tfa/enable`, {
 				headers: {
 					'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 				}
@@ -76,7 +76,7 @@ const Profile = () => {
 			cookies.set("Xcasfhajsd","kjshdfi23qwd");
 		}
 		else
-			await fetch(`https://${process.env.REACT_APP_IP}:80/auth/tfa/disable`, {
+			await fetch(`http://${process.env.REACT_APP_BACK_URL}/auth/tfa/disable`, {
 				headers: {
 					'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 				}
@@ -91,16 +91,11 @@ const Profile = () => {
 		setSettingPopUp(false);
 	}
 	const handleChange =(e:React.ChangeEvent<HTMLInputElement>)=>{
-		if((e.target.value).length < 11)
-		{
-			setNewNick(e.target.value);
-		}
-		else
-			alert("new nick");
+		setNewNick(e.target.value);
 	}
 	const send = () =>{
 		const fetchData = async () =>{
-			const response = await fetch(`https://${process.env.REACT_APP_IP}:80/user/changeNick/${newNick}`, {
+			const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/changeNick/${newNick}`, {
 				headers: {
 					'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 				}
@@ -145,25 +140,13 @@ const Profile = () => {
 								{nick === null ? (<img onClick={changeAvatar} className="imageSetting" src={edit}/>):(null)}
 							</div>
 							<div className="pBottomBlock">
-								{nick === null ? (
-									<div className="pIconBlock">
-										<div className="pIconBlockPosition">
-											<div>
-												<label className="pIconLabel">TFA</label>
-											</div>
-											<div className="toogleContainer">
-												<ToggleSwitch checked={toggleState} onChange={handleToggleChange} />
-											</div>
-										</div>
-									</div>
-								):
-								(null)}
 								<div className="pValueBlock">
 									<div className="leftBlock">
 										<div className="pRowBlock">Nick</div>
 										<div className="pRowBlock">Latter Level</div>
 										<div className="pRowBlock">Win</div>
 										<div className="pRowBlock">Lose</div>
+										<div className="pRowBlock">TFA</div>
 									</div>
 									<div className="rightBlock">
 										<div className="pRowBlock" id="changeNameId">
@@ -172,12 +155,15 @@ const Profile = () => {
 											{
 												nick === null?(<img onClick={changeName} className="setting" src={edit}/>):(null)
 											}</label>):
-											(<label className="settingIcon"><input type="text" name="name" onChange={handleChange}></input><img onClick={send} src={nickOk} className="setting"/><img onClick={close} src={x} className="setting"/></label>)
+											(<label className="settingIcon"><input className="newNickInput" type="text" name="name" maxlength="15" placeholder="New Nick Here" onChange={handleChange}></input><img onClick={send} src={nickOk} className="setting"/><img onClick={close} src={x} className="setting"/></label>)
 										}
 										</div>
 										<div className="pRowBlock">{user.LatterLevel}</div>
 										<div className="pRowBlock">{user.WinCount}</div>
 										<div className="pRowBlock">{user.LoseCount}</div>
+										<div className="toogleContainer">
+											<ToggleSwitch checked={toggleState} onChange={handleToggleChange} />
+										</div>
 									</div>
 								</div>
 								<div className="match">

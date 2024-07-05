@@ -2,22 +2,28 @@ version: "3.5"
 
 services:
   nest:
-    container_name: nestjs
+    container_name: nest
     build: ./NestJS/
     restart: always
     environment:
-      DB_HOST: postgres
-      DB_PORT: 5432
-      DB_USERNAME: postgres
-      DB_PASSWORD: 1234
-      DB_DATABASE: user
+      - DB_HOST=${DB_HOST}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=${DB_DATABASE}
+      - UID=${UID}
+      - SECRET=${SECRET}
+      - DB_PORT=${DB_PORT}
+      - FRONT_URL=${FRONT_URL}
+      - BACK_PORT=${BACK_PORT}
+      - DATABASE_URL=${DATABASE_URL}
+      - REDIRECT_URI=${REDIRECT_URI}
     depends_on:
       - postgres
     ports:
-      - 80:80
+      - ${BACK_PORT}:${BACK_PORT}
       - 5555:5555
     networks:
-      - network
+      - backend_network
     volumes:
       - ssl_data:/etc/ssl_volume
       - nest_data:/root/Nestjs
@@ -27,24 +33,24 @@ services:
     image: postgres:latest
     restart: always
     environment:
-      POSTGRES_DB: user
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 1234
-    ports:
-      - 5432:5432
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
     networks:
-      - network
+      - backend_network
 
   react:
     container_name: react
     build: ./React
     restart: always
+    environment:
+      - PORT=${FRONT_PORT}
+      - REACT_APP_BACK_URL=${BACK_URL}
+      - REACT_APP_FT_API=${FT_API}
     depends_on:
       - nest
     ports:
-      - 3000:3000
-    networks:
-      - network
+      - ${FRONT_PORT}:${FRONT_PORT}
     volumes:
       - ssl_data:/etc/ssl_volume
       - react_data:/root/React
@@ -64,11 +70,11 @@ volumes:
       o: bind
   ssl_data:
     driver: local
-    driver_opts:
+    driver_opts: 
       type: none
       device: ./ssl
       o: bind
 
 networks:
-  network:
+  backend_network:
     driver: bridge

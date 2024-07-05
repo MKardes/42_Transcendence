@@ -8,7 +8,7 @@ import { cookies } from "../App";
 const LeaderBoardProfile = ({index, user, myid}) =>{
 	const addClick = () =>{
 		const fetchData = async () =>{
-            const response: any = await fetch(`https://${process.env.REACT_APP_IP}:80/user/findUser/${user.nick}`, {///
+            const response: any = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/findUser/${user.nick}`, {///
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }
@@ -20,7 +20,7 @@ const LeaderBoardProfile = ({index, user, myid}) =>{
 	}
 	const ignoreClick = () =>{
 		const fetchData = async () =>{
-            const response = await fetch(`https://${process.env.REACT_APP_IP}:80/user/ignoreUser/${user.nick}`, {
+            const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/ignoreUser/${user.nick}`, {
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }
@@ -34,7 +34,7 @@ const LeaderBoardProfile = ({index, user, myid}) =>{
 		// let myid: number;
         let chName: string;
         const fetchMe = async () =>{
-            // const response = await fetch(`https://${process.env.REACT_APP_IP}:80/user`, {
+            // const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user`, {
             //     headers: {
             //         'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
             //     }
@@ -46,7 +46,7 @@ const LeaderBoardProfile = ({index, user, myid}) =>{
             else
                 chName = myid + "-" + user.id;
 
-            const chcreateRes = await fetch(`https://${process.env.REACT_APP_IP}:80/chat/${chName}/create/true/false/undefined`, {
+            const chcreateRes = await fetch(`http://${process.env.REACT_APP_BACK_URL}/chat/${chName}/create/true/false/undefined`, {
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                     'Content-Type': 'application/json'

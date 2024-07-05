@@ -33,7 +33,7 @@ export const Login = ({setUser, isTFAStatus, setIsTFAStatus, setMaxSocket, setIs
 				const data = {}
 				data['code']= code;
 
-				const response = await fetch(`https://${process.env.REACT_APP_IP}:80/auth/42/signin_intra`, {
+				const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/auth/42/signin_intra`, {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export const Login = ({setUser, isTFAStatus, setIsTFAStatus, setMaxSocket, setIs
 					alert("You couldn't log in!!");
 					return;
 				}
-				const responseIsConnected = await fetch(`https://${process.env.REACT_APP_IP}:80/chat/isConnected`, {
+				const responseIsConnected = await fetch(`http://${process.env.REACT_APP_BACK_URL}/chat/isConnected`, {
 					headers: {
 						'authorization': 'Bearer ' + responseData.token,
 					},
@@ -64,7 +64,7 @@ export const Login = ({setUser, isTFAStatus, setIsTFAStatus, setMaxSocket, setIs
 					return;
 				}
 				setMaxSocket(false);
-				await fetch(`https://${process.env.REACT_APP_IP}:80/chat/connect`, {
+				await fetch(`http://${process.env.REACT_APP_BACK_URL}/chat/connect`, {
 					headers: {
 						'socket-id': socket.id,
 						'authorization': 'Bearer ' + responseData.token,
@@ -76,7 +76,7 @@ export const Login = ({setUser, isTFAStatus, setIsTFAStatus, setMaxSocket, setIs
 					setIsTFAStatus(true);
 					return;
 				}
-				const responseUser = await fetch(`https://${process.env.REACT_APP_IP}:80/user`, {
+				const responseUser = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user`, {
 					headers: {
 						'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 					}
@@ -88,7 +88,7 @@ export const Login = ({setUser, isTFAStatus, setIsTFAStatus, setMaxSocket, setIs
 				}
 			}
 			if(isPressed === true){
-				const resIsSigned = await fetch(`https://${process.env.REACT_APP_IP}:80/user/isSigned`, {
+				const resIsSigned = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/isSigned`, {
 					headers: {
 						'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 					}
@@ -115,10 +115,10 @@ export const Login = ({setUser, isTFAStatus, setIsTFAStatus, setMaxSocket, setIs
 //             setIsPressed(true);
 //         }
 //         window.addEventListener('message', messageHandler);
-//         window.open(process.env.REACT_APP_API, "intraPopUp", "width=500, height=300");
+//         window.open(process.env.REACT_APP_FT_API, "intraPopUp", "width=500, height=300");
 //     };
 	const handleFTLogin = () => {
-		window.location.href=(process.env.REACT_APP_API);
+		window.location.href=(process.env.REACT_APP_FT_API);
 	};
 	const calculateTransform = (index) => {
 		const degree = 7.2 * index;

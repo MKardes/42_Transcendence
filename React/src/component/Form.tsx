@@ -46,7 +46,7 @@ const Form = ({user, setUser, setIsFormSigned, formType, setChgAvatar}) => {
             {
                 try {
                     data["nick"] = nick;
-                    const responseImage = await fetch(`https://${process.env.REACT_APP_IP}:80/user/form`, {
+                    const responseImage = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/form`, {
                         method: 'POST',
                         headers: {
                             'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
@@ -57,7 +57,7 @@ const Form = ({user, setUser, setIsFormSigned, formType, setChgAvatar}) => {
                     const responseImageGet = responseImage.json();
                     if (responseImage.ok){
                         setIsFormSigned(true);
-                        await fetch(`https://${process.env.REACT_APP_IP}:80/user/sign`, {
+                        await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/sign`, {
                             headers: {
                                 'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                             }
@@ -75,7 +75,7 @@ const Form = ({user, setUser, setIsFormSigned, formType, setChgAvatar}) => {
         }
         const changeAvatar = async () => {
             try {
-                const responseImage = await fetch(`https://${process.env.REACT_APP_IP}:80/user/changeAvatar`, {
+                const responseImage = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/changeAvatar`, {
                     method: 'POST',
                     headers: {
                         'authorization': 'Bearer ' + cookies.get("jwt_authorization"),

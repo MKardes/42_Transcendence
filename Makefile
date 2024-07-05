@@ -1,10 +1,30 @@
-#USER_HOME = $(HOME)
+RED=\033[0;31m
+BLUE=\033[0;34m
+NC=\033[0m
 
 all:
-#	sudo mkdir -p $(USER_HOME)/data/mysql
-#	sudo mkdir -p $(USER_HOME)/data/wordpress
-#	export USER_HOME=$$HOME && docker-compose up -d --build
-	docker compose up -d --build
+	@if [ -f ".env" ]; then \
+		docker compose up -d --build; \
+    else \
+        echo "${RED}Env file does not exist!\nPlease create a .env file that includes:${NC}"; \
+		echo "\
+${BLUE}DB_HOST${NC}=postgres \
+\n${BLUE}DB_USERNAME${NC}= \
+\n${BLUE}DB_PASSWORD${NC}= \
+\n${BLUE}DB_DATABASE${NC}= \
+\n${BLUE}BACK_PORT${NC}= \
+\n${BLUE}FRONT_PORT${NC}= \
+\n${BLUE}DB_PORT${NC}= \
+\n${BLUE}DOMAIN${NC}= \
+\n${BLUE}UID${NC}= \
+\n${BLUE}SECRET${NC}= \
+\n${BLUE}PROTOCOL${NC}= (\"http\" or \"https\")\
+\n${BLUE}BACK_URL${NC}=\$${DOMAIN}:\$${BACK_PORT} \
+\n${BLUE}FRONT_URL${NC}=\$${DOMAIN}:\$${FRONT_PORT} \
+\n${BLUE}FT_API${NC}=\"https://api.intra.42.fr/oauth/authorize?client_id=\$${UID}&redirect_uri=\$${PROTOCOL}%3A%2F%2F\$${DOMAIN}%3A\$${FRONT_PORT}&response_type=code\" \
+\n${BLUE}DATABASE_URL${NC}=\"postgresql://\$${DB_USERNAME}:\$${DB_PASSWORD}@\$${DB_HOST}:\$${DB_PORT}/\$${DB_DATABASE}\" \
+\n${BLUE}REDIRECT_URI${NC}=\"\$${PROTOCOL}://\$${FRONT_URL}\"\n";\
+    fi
 
 down:
 	docker compose down

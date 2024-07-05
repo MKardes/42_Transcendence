@@ -13,7 +13,7 @@ const Friend = ({friend, status, setStatus}) =>{
         let myid: number;
         let chName: string;
         const fetchMe = async () =>{
-            const response = await fetch(`https://${process.env.REACT_APP_IP}:80/user`, {
+            const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user`, {
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }
@@ -25,7 +25,7 @@ const Friend = ({friend, status, setStatus}) =>{
             else
                 chName = myid + "-" + friend.id;
 
-            const chcreateRes = await fetch(`https://${process.env.REACT_APP_IP}:80/chat/${chName}/create/true/false/undefined`, {
+            const chcreateRes = await fetch(`http://${process.env.REACT_APP_BACK_URL}/chat/${chName}/create/true/false/undefined`, {
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                     'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ const Friend = ({friend, status, setStatus}) =>{
     const ignorePerson = async () =>
     {
         const fetchData = async () =>{
-            const response = await fetch(`https://${process.env.REACT_APP_IP}:80/user/ignoreUser/${friend.nick}`, {
+            const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/ignoreUser/${friend.nick}`, {
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }
@@ -57,7 +57,7 @@ const Friend = ({friend, status, setStatus}) =>{
     const chInvite = () =>
     {
         const fetchData = async () =>{
-            const response = await fetch(`https://${process.env.REACT_APP_IP}:80/chat/${name}/inviteChannel/${friend.nick}`, {
+            const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/chat/${name}/inviteChannel/${friend.nick}`, {
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }

@@ -11,6 +11,7 @@ export class AuthController {
 	// {msg,      -1} The user couldn't log in.
 	@Post('signin_intra')
 	async signin_intra(@Headers('authorization') head: string, @Body() data: any) {
+		console.log("Sign in intra geldi");
 		if(!data)
 			return("404 Not Found");
 		return (this.authService.signin_intra(data));

@@ -21,12 +21,11 @@ function App() {
 	const [isFormSigned, setIsFormSigned] = useState(false);
 
 	useEffect(() => {
-		console.log("APP");
 		const fetchData = async () => {
 			socket.on("connect", async () => {
 				const token = cookies.get("jwt_authorization");
 				if (token !== undefined){
-					const responseIsConnected = await fetch(`https://${process.env.REACT_APP_IP}:80/chat/isConnected`, {
+					const responseIsConnected = await fetch(`http://${process.env.REACT_APP_BACK_URL}/chat/isConnected`, {
 					headers: {
 						'authorization': 'Bearer ' + token,
 					},
@@ -40,7 +39,7 @@ function App() {
 					}
 					else
 						setMaxSocket(false);
-					await fetch(`https://${process.env.REACT_APP_IP}:80/chat/connect`, {
+					await fetch(`http://${process.env.REACT_APP_BACK_URL}/chat/connect`, {
 						headers: {
 							'socket-id': socket.id,
 							'authorization': 'Bearer ' + token,
@@ -53,7 +52,7 @@ function App() {
 				setUser({res: "undefined"});
 				return;
 			}
-			const responseUser = await fetch(`https://${process.env.REACT_APP_IP}:80/user/checkJWT`, {
+			const responseUser = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/checkJWT`, {
 				headers: {
 					'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 				}
@@ -70,7 +69,7 @@ function App() {
 				return;
 			}
 			setUser({...res, res: "user"});
-			const response = await fetch(`https://${process.env.REACT_APP_IP}:80/user/isSigned`, {
+			const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/isSigned`, {
 				headers: {
 					'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }

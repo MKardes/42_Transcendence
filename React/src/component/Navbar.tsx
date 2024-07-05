@@ -23,7 +23,7 @@ const Navbar = ({user, setUser, maxSocket, isFormSigned}) => {
         {
             setPopOpen(true);
             const fetchData = async () =>{
-                const response = await fetch(`https://${process.env.REACT_APP_IP}:80/user/friendRequests`, {
+                const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/friendRequests`, {
                     headers: {
                         'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                     }
@@ -39,7 +39,7 @@ const Navbar = ({user, setUser, maxSocket, isFormSigned}) => {
     }
     const acceptFriend = (e) =>{
         const fetchData = async () =>{
-            const response = await fetch(`https://${process.env.REACT_APP_IP}:80/user/acceptFriend/${e}`, {
+            const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/acceptFriend/${e}`, {
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }
@@ -54,7 +54,7 @@ const Navbar = ({user, setUser, maxSocket, isFormSigned}) => {
     }
     const rejectFriend = (e) => {
         const fetchData = async () =>{
-            const response = await fetch(`https://${process.env.REACT_APP_IP}:80/user/rejectFriend/${e}`, {
+            const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/rejectFriend/${e}`, {
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }
@@ -72,7 +72,7 @@ const Navbar = ({user, setUser, maxSocket, isFormSigned}) => {
 
     return (
         <div className="navbar">
-            <span className="logo"><Link to="/" className="link">TRANSCENDENCE</Link></span>
+            <span className="logo"><Link to="/" className="linkLogo">TRANSCENDENCE</Link></span>
             {user.res !== "undefined" && maxSocket !== true && isFormSigned !== false ? (
                 <ul className="list">
                  <p className="pItem">{user.login}</p>

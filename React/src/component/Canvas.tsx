@@ -40,7 +40,7 @@ const Canvas = ({ location, myNick, rival, roomID, setState, setPrivGame}: { loc
 		socketGame.on("scoreUpdate", async (pos) => {
 			if (pos === "rivalDisconnected")
 			{
-				await fetch(`https://${process.env.REACT_APP_IP}:80/game/result/${rival.id}/3/0`, {
+				await fetch(`http://${process.env.REACT_APP_BACK_URL}/game/result/${rival.id}/3/0`, {
 					headers: {
 						'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 					}
@@ -55,7 +55,7 @@ const Canvas = ({ location, myNick, rival, roomID, setState, setPrivGame}: { loc
 				setMyScore(tmpScore + 1);
 				if(tmpScore + 1 == 10)
 				{
-					await fetch(`https://${process.env.REACT_APP_IP}:80/game/result/${rival.id}/${tmpScore + 1}/${rivalScore}`, {
+					await fetch(`http://${process.env.REACT_APP_BACK_URL}/game/result/${rival.id}/${tmpScore + 1}/${rivalScore}`, {
 						headers: {
 							'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 						}

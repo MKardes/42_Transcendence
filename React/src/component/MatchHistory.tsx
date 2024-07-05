@@ -14,7 +14,7 @@ const MatchHistory = () =>{
     useEffect(() => {
 		const fetchData = async () =>{
 			if (nick === null){
-				const response = await fetch(`https://${process.env.REACT_APP_IP}:80/user/matchHistory`, {///
+				const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/matchHistory`, {///
 					headers: {
 						'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 					}
@@ -27,7 +27,7 @@ const MatchHistory = () =>{
 				}
 			}
 			else{
-				const response = await fetch(`https://${process.env.REACT_APP_IP}:80/user/matchHistory/${nick}`, {///
+				const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/matchHistory/${nick}`, {///
 					headers: {
 						'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
 					}

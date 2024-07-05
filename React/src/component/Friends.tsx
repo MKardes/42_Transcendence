@@ -15,7 +15,7 @@ const FriendsSidebar = () => {
     })
     useEffect(() => {
         const fetchData = async () =>{
-            const response = await fetch(`https://${process.env.REACT_APP_IP}:80/user/friends`, {///
+            const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/friends`, {///
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }
@@ -39,7 +39,7 @@ const FriendsSidebar = () => {
     const handleClick = () =>{
         if (finds){
             const fetchData = async () =>{
-                const response: any = await fetch(`https://${process.env.REACT_APP_IP}:80/user/findUser/${finds}`, {///
+                const response: any = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/findUser/${finds}`, {///
                     headers: {
                         'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                     }

@@ -6,7 +6,7 @@ const TFA = ({qr, setIsTFA, setIsTFAPopUp}/* {closeTFA} */) =>{
     const click = async (e)=>{
         e.preventDefault();
         const stringValue: string = value.toString();
-        const responseVerify = await fetch(`https://${process.env.REACT_APP_IP}:80/auth/tfa/verify/${stringValue}`, {
+        const responseVerify = await fetch(`http://${process.env.REACT_APP_BACK_URL}/auth/tfa/verify/${stringValue}`, {
             headers: {
                 'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
             }

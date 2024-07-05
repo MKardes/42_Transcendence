@@ -11,7 +11,7 @@ import ko from "../images/close.png";
 let rivalSocketID: string = "";
 let rivalID: number;
 
-export let socketGame = io(`https://${process.env.REACT_APP_IP}:80`, {
+export let socketGame = io(`http://${process.env.REACT_APP_BACK_URL}`, {
     transports: ['websocket']
 });
 
@@ -38,7 +38,7 @@ const Game = ({user}) => {
     };
     useEffect(() => {
         const fetchData = async () =>{
-            const response = await fetch(`https://${process.env.REACT_APP_IP}:80/game/gameInvitations`, {///
+            const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/game/gameInvitations`, {///
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }
@@ -66,13 +66,13 @@ const Game = ({user}) => {
         const fetchData = async () =>{
             if (friendID !== null) {
                 socketGame.disconnect();
-                socketGame = io(`https://${process.env.REACT_APP_IP}:80`, {
+                socketGame = io(`http://${process.env.REACT_APP_BACK_URL}`, {
                     transports: ['websocket']
                 });
                 socketGame.emit('joinPrivGame', {myId: user.id, rivalID: parseInt(friendID)});
                 socketGame.emit('invite', {myId: user.id, rivalID: parseInt(friendID)});
                 setPrivGame(1);
-                await fetch(`https://${process.env.REACT_APP_IP}:80/game/invite/${friendID}`, {
+                await fetch(`http://${process.env.REACT_APP_BACK_URL}/game/invite/${friendID}`, {
                     headers: {
                         'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                     }
@@ -91,7 +91,7 @@ const Game = ({user}) => {
             setRoomID(data.roomID);
             setLocation(data.myLocation);
             setState(2);
-            const response = await fetch(`https://${process.env.REACT_APP_IP}:80/user/nick/${rivalID}`, {
+            const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/nick/${rivalID}`, {
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }
@@ -107,7 +107,7 @@ const Game = ({user}) => {
             setRoomID(data.roomID);
             setLocation(data.myLocation);
             setState(3);
-            const response = await fetch(`https://${process.env.REACT_APP_IP}:80/user/nick/${rivalID}`, {
+            const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/user/nick/${rivalID}`, {
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }
@@ -159,7 +159,7 @@ const Game = ({user}) => {
 
     const handleClick = () => {
         socketGame.disconnect();
-        socketGame = io(`https://${process.env.REACT_APP_IP}:80`, {
+        socketGame = io(`http://${process.env.REACT_APP_BACK_URL}`, {
             transports: ['websocket']
         });
         socketGame.emit('joinGame', {id: user.id});
@@ -168,7 +168,7 @@ const Game = ({user}) => {
     
     const handleModeClick = () => {
         socketGame.disconnect();
-        socketGame = io(`https://${process.env.REACT_APP_IP}:80`, {
+        socketGame = io(`http://${process.env.REACT_APP_BACK_URL}`, {
             transports: ['websocket']
         });
         socketGame.emit('joinModeGame', {id: user.id});
@@ -177,14 +177,14 @@ const Game = ({user}) => {
 
     const acceptReq = (e: any) =>{
         const fetchData = async () =>{
-            await fetch(`https://${process.env.REACT_APP_IP}:80/game/deleteInvitaton/${e.id}`, {///
+            await fetch(`http://${process.env.REACT_APP_BACK_URL}/game/deleteInvitaton/${e.id}`, {///
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }
             })
         }
         socketGame.disconnect();
-        socketGame = io(`https://${process.env.REACT_APP_IP}:80`, {
+        socketGame = io(`http://${process.env.REACT_APP_BACK_URL}`, {
             transports: ['websocket']
         });
         // open game
@@ -195,7 +195,7 @@ const Game = ({user}) => {
     
     const rejectReq = (e: any) =>{
         const fetchData = async () =>{
-            await fetch(`https://${process.env.REACT_APP_IP}:80/game/deleteInvitaton/${e.id}`, {///
+            await fetch(`http://${process.env.REACT_APP_BACK_URL}/game/deleteInvitaton/${e.id}`, {///
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }
@@ -209,7 +209,7 @@ const Game = ({user}) => {
         <div className='oyun'>
         {
             privGame === 1 && state !== 2 ? (
-                <div>
+                <div className='waitFriend'>
                     <p>Please wait your friend to accept invitation...</p>
                 </div>
             ) : state === 0 ? (
@@ -247,7 +247,7 @@ const Game = ({user}) => {
             </div>
             )
             : state === 1 ? (
-                <div>
+                <div className="waitQueue">
                     <p>You are in the queue</p>
                     <p>Please wait for another player...</p>
                 </div> 

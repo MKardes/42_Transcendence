@@ -7,7 +7,7 @@ const LeaderBoard = ({user}) =>{
 	const myid:number = user.id;
 	useEffect (() => {
         const fetchData = async () =>{
-            const response = await fetch(`https://${process.env.REACT_APP_IP}:80/leaderboard`, {
+            const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/leaderboard`, {
                 headers: {
                     'authorization': 'Bearer ' + cookies.get("jwt_authorization"),
                 }
@@ -21,7 +21,7 @@ const LeaderBoard = ({user}) =>{
 	return(
 		<div className="leaderBoard">
 			<div className="lBh1">
-				<h1>LeaderBoard</h1>
+				<h1 className="leaderHead"><div className=""></div>Leaderboard</h1>
 			</div>
 				{Users.map((user, index) => (
 					<LeaderBoardProfile key={index} index={index} user={user} myid={myid}/>

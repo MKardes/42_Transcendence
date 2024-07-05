@@ -25,7 +25,7 @@ const ChannelPopUpList = ({client, channel, checkMute, setCheckMute, IsAdmin}) =
     const handleClick =(e) =>{
 
             const fetchData = async () =>{
-                const response = await fetch(`https://${process.env.REACT_APP_IP}:80/chat/${channel.Name}/${(e.target).id}/${client.nick}`, {
+                const response = await fetch(`http://${process.env.REACT_APP_BACK_URL}/chat/${channel.Name}/${(e.target).id}/${client.nick}`, {
                     headers: { 'authorization': 'Bearer ' + cookies.get("jwt_authorization"), }
                 });
                 const res = await response.json();
