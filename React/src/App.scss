@@ -192,7 +192,7 @@
 				bottom: -6px;
 				width: 100%;
 				height: 3px;
-				background-color: #112D4E;
+				background-color: white;
 				border-radius: 5px;
 				transform: scaleX(0);
 				transform-origin: left;
@@ -200,7 +200,7 @@
 			}
 
 			.listItem:hover{
-				color:#112D4E;
+				color:white;
 
 			}
 
@@ -613,17 +613,24 @@
 				margin-top: 50px;
 				margin-bottom: -100px;
 				display: flex;
-				img{
+				gap: 10px;
+				img {
 					width: 100px;
-					height:100px;
+					height: 100px;
 					margin: 10px;
-					overflow: hidden;;
+					overflow: hidden;
 					background-color: #112D4E;
 					border: 3px solid white;
 					border-radius: 50%;
 				}
-				p{
-					position: absolute;
+				p {
+					color: white;
+					width: 10ch;
+					text-align: center;
+					white-space: pre-wrap;
+					word-wrap: break-word;
+					margin: 0;
+					margin-left: 11px;
 				}
 			}
 		}
