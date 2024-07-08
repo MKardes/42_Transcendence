@@ -15,21 +15,6 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {cors: true, /*httpsOptions (FOR HTTPS)*/ });
   app.enableCors({ origin: '*' });
 
-  // const app = await NestFactory.create<NestExpressApplication>(AppModule, {cors : true});
-
-  // app.useStaticAssets(path.join(__dirname, '..', '..', 'Front'));
-  // //for Swagger
-  // const config = new DocumentBuilder()
-  //   .setTitle('Nest API')
-  //   .setDescription('the description of the API')
-  //   .setVersion('1.0')
-  //   .build();
-
-  // const document = SwaggerModule.createDocument(app, config);
-  // SwaggerModule.setup('/swagger', app, document);
-
-  // app.enableCors({ origin: 'http://10.12.14.1:3000' }); // React uygulamasının IP ve portunu ekleyin
-  // app.enableCors({ origin: 'http://10.12.14.5:3000' }); // React uygulamasının IP ve portunu ekleyin
   await app.listen(process.env.BACK_PORT, '0.0.0.0');
 }
 bootstrap();

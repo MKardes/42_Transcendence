@@ -40,6 +40,6 @@ fclean: down
 	rm -rf NestJS/Avatars/* NestJS/node_modules NestJS/dist 
 #   rm -rf NestJS/run
 	rm -rf React/node_modules
-#	sudo rm -rf $(USER_HOME)/data/*
+	rm -rf ssl/*
 
 .PHONY: all down re clean fclean
